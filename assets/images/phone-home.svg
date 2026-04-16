@@ -1,0 +1,28 @@
+<svg width="520" height="760" viewBox="0 0 520 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="110" y="18" width="300" height="724" rx="52" fill="#0F172A"/>
+  <rect x="124" y="34" width="272" height="692" rx="40" fill="#F6F7F9"/>
+  <rect x="208" y="54" width="104" height="14" rx="7" fill="#1F2A44" fill-opacity="0.12"/>
+  <rect x="146" y="102" width="228" height="92" rx="24" fill="#FFFFFF" stroke="#E6EAF0"/>
+  <text x="172" y="136" fill="#7C8799" font-family="Inter, Arial, sans-serif" font-size="16">Today Income</text>
+  <text x="172" y="173" fill="#1F2A44" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">+ ¥ 126.80</text>
+  <path d="M158 234C170 220.667 190.4 205.2 214 205.2C237.6 205.2 245.2 233.6 268.8 233.6C292.4 233.6 306.8 180 340 180" stroke="#3B82F6" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="340" cy="180" r="7" fill="#3B82F6"/>
+  <rect x="146" y="216" width="228" height="124" rx="24" fill="#FFFFFF" stroke="#E6EAF0"/>
+  <text x="170" y="252" fill="#7C8799" font-family="Inter, Arial, sans-serif" font-size="16">Monthly Overview</text>
+  <rect x="170" y="274" width="74" height="12" rx="6" fill="#DCEBFF"/>
+  <rect x="170" y="302" width="122" height="12" rx="6" fill="#DCEBFF"/>
+  <rect x="170" y="330" width="162" height="12" rx="6" fill="#3B82F6" fill-opacity="0.18"/>
+  <rect x="146" y="364" width="108" height="132" rx="24" fill="#FFFFFF" stroke="#E6EAF0"/>
+  <text x="168" y="404" fill="#1F2A44" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600">Wish Goal</text>
+  <circle cx="200" cy="450" r="28" stroke="#3B82F6" stroke-width="6"/>
+  <path d="M200 422V450L219 465" stroke="#3B82F6" stroke-width="5" stroke-linecap="round"/>
+  <rect x="266" y="364" width="108" height="132" rx="24" fill="#FFFFFF" stroke="#E6EAF0"/>
+  <text x="289" y="404" fill="#1F2A44" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600">Installment</text>
+  <rect x="289" y="430" width="62" height="12" rx="6" fill="#DCEBFF"/>
+  <rect x="289" y="454" width="42" height="12" rx="6" fill="#3B82F6"/>
+  <rect x="146" y="520" width="228" height="150" rx="24" fill="#FFFFFF" stroke="#E6EAF0"/>
+  <text x="170" y="558" fill="#1F2A44" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600">Assets & Records</text>
+  <rect x="170" y="584" width="86" height="10" rx="5" fill="#DCEBFF"/>
+  <rect x="170" y="606" width="180" height="10" rx="5" fill="#E6EAF0"/>
+  <rect x="170" y="628" width="160" height="10" rx="5" fill="#E6EAF0"/>
+</svg>

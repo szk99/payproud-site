@@ -1,0 +1,26 @@
+<svg width="520" height="760" viewBox="0 0 520 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="110" y="18" width="300" height="724" rx="52" fill="#0F172A"/>
+  <rect x="124" y="34" width="272" height="692" rx="40" fill="#FFFFFF"/>
+  <rect x="208" y="54" width="104" height="14" rx="7" fill="#1F2A44" fill-opacity="0.1"/>
+  <rect x="146" y="102" width="228" height="144" rx="28" fill="#F6F7F9" stroke="#E6EAF0"/>
+  <text x="170" y="142" fill="#1F2A44" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">PayProud</text>
+  <text x="170" y="170" fill="#7C8799" font-family="Inter, Arial, sans-serif" font-size="14">Track earnings and goals</text>
+  <path d="M170 212H350" stroke="#E6EAF0" stroke-width="2"/>
+  <path d="M178 196C187.333 186 204.867 174 227.2 174C249.533 174 257.467 204 279.8 204C302.133 204 317.333 162 338 150" stroke="#3B82F6" stroke-width="4" stroke-linecap="round"/>
+  <rect x="146" y="270" width="228" height="176" rx="28" fill="#0F172A"/>
+  <text x="172" y="312" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="16">Progress Insight</text>
+  <text x="172" y="352" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="700">72%</text>
+  <rect x="172" y="378" width="176" height="12" rx="6" fill="#1F2A44"/>
+  <rect x="172" y="378" width="126" height="12" rx="6" fill="#3B82F6"/>
+  <rect x="146" y="470" width="108" height="164" rx="24" fill="#F6F7F9" stroke="#E6EAF0"/>
+  <text x="170" y="510" fill="#1F2A44" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600">Theme</text>
+  <circle cx="182" cy="548" r="14" fill="#DCEBFF"/>
+  <circle cx="218" cy="548" r="14" fill="#3B82F6"/>
+  <circle cx="182" cy="592" r="14" fill="#0F172A"/>
+  <circle cx="218" cy="592" r="14" fill="#E6EAF0"/>
+  <rect x="266" y="470" width="108" height="164" rx="24" fill="#F6F7F9" stroke="#E6EAF0"/>
+  <text x="286" y="510" fill="#1F2A44" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600">Records</text>
+  <rect x="286" y="536" width="68" height="10" rx="5" fill="#DCEBFF"/>
+  <rect x="286" y="560" width="52" height="10" rx="5" fill="#3B82F6"/>
+  <rect x="286" y="584" width="62" height="10" rx="5" fill="#DCEBFF"/>
+</svg>
