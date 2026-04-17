@@ -13,7 +13,7 @@
     <div data-site-header></div>
     <main>
       <div class="min-h-screen bg-white">
-        <section class="home-hero relative pt-24 pb-20 md:pt-32 md:pb-28 bg-white overflow-hidden">
+        <section class="home-hero relative pt-24 pb-20 md:pt-32 md:pb-28 bg-white overflow-hidden" data-track-section="home_hero">
           <div class="absolute top-0 right-0 w-1/2 h-full opacity-5">
             <svg viewBox="0 0 400 400" class="w-full h-full">
               <circle cx="200" cy="200" r="150" stroke="#3B82F6" stroke-width="1.5" fill="none" />
@@ -37,8 +37,8 @@
                   We are a young and creative software and digital product company, focused on refining ideas, inspiration, and real-world needs into usable, expressive, and continuously evolving mobile products.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                  <a href="about.html" class="px-6 py-3 bg-[#3B82F6] text-white font-semibold rounded-lg hover:bg-[#2563EB] transition-colors text-center">About the Company</a>
-                  <a href="product.html" class="px-6 py-3 bg-white text-[#1F2A44] font-semibold rounded-lg border border-[#E6EAF0] hover:bg-[#F6F7F9] transition-colors text-center">View Product</a>
+                  <a href="about.html" class="px-6 py-3 bg-[#3B82F6] text-white font-semibold rounded-lg hover:bg-[#2563EB] transition-colors text-center" data-track-event="hero_primary_click" data-track-label="about_company">About the Company</a>
+                  <a href="product.html" class="px-6 py-3 bg-white text-[#1F2A44] font-semibold rounded-lg border border-[#E6EAF0] hover:bg-[#F6F7F9] transition-colors text-center" data-track-event="hero_secondary_click" data-track-label="view_product">View Product</a>
                 </div>
               </div>
 
@@ -58,7 +58,7 @@
           </div>
         </section>
 
-        <section class="py-20 bg-white">
+        <section class="py-20 bg-white" data-track-section="home_about">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
               <span class="inline-block px-4 py-1.5 bg-[#F6F7F9] border border-[#E6EAF0] rounded-full text-sm text-[#4B556B] mb-4">
@@ -108,7 +108,7 @@
           </div>
         </section>
 
-        <section class="py-20 bg-[#F6F7F9]">
+        <section class="py-20 bg-[#F6F7F9]" data-track-section="home_product">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
               <span class="inline-block px-4 py-1.5 bg-white border border-[#E6EAF0] rounded-full text-sm text-[#4B556B] mb-4">Our Product</span>
@@ -158,12 +158,12 @@
             </div>
 
             <div class="text-center">
-              <a href="product.html" class="inline-block px-8 py-3 bg-[#3B82F6] text-white font-semibold rounded-lg hover:bg-[#2563EB] transition-colors">View Details</a>
+              <a href="product.html" class="inline-block px-8 py-3 bg-[#3B82F6] text-white font-semibold rounded-lg hover:bg-[#2563EB] transition-colors" data-track-event="home_product_detail_click" data-track-label="product_detail">View Details</a>
             </div>
           </div>
         </section>
 
-        <section class="py-20 bg-white">
+        <section class="py-20 bg-white" data-track-section="home_company_info">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-[#F6F7F9] border border-[#E6EAF0] rounded-3xl p-8 md:p-12">
               <div class="text-center mb-8">

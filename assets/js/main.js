@@ -9,6 +9,17 @@ const NAV_ITEMS = [
 ];
 
 const CONTACT_EMAIL = "976707022@qq.com";
+const ANALYTICS_CONFIG = {
+  umami: {
+    scriptUrl: "https://admin.payproud.cn/script.js",
+    websiteId: "",
+    domains: "payproud.cn,www.payproud.cn",
+  },
+  clarity: {
+    projectId: "",
+  },
+};
+
 const LOCALES = {
   zh: {
     nav: {
@@ -92,7 +103,10 @@ const LOCALES = {
 
 document.addEventListener("DOMContentLoaded", () => {
   injectShell();
+  injectAnalyticsScripts();
   initHeaderInteractions();
+  initTrackedInteractions();
+  initSectionTracking();
   initContactForm();
 });
 
@@ -117,6 +131,45 @@ function injectShell() {
 
   if (header) header.innerHTML = renderHeader(page, locale);
   if (footer) footer.innerHTML = renderFooter(locale);
+}
+
+function injectAnalyticsScripts() {
+  injectUmamiScript();
+  injectClarityScript();
+}
+
+function injectUmamiScript() {
+  if (!ANALYTICS_CONFIG.umami.websiteId) return;
+
+  const existing = document.querySelector('script[data-analytics-script="umami"]');
+  if (existing) return;
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.defer = true;
+  script.dataset.analyticsScript = "umami";
+  script.dataset.websiteId = ANALYTICS_CONFIG.umami.websiteId;
+  script.dataset.domains = ANALYTICS_CONFIG.umami.domains;
+  script.src = ANALYTICS_CONFIG.umami.scriptUrl;
+  document.head.appendChild(script);
+}
+
+function injectClarityScript() {
+  const { projectId } = ANALYTICS_CONFIG.clarity;
+  if (!projectId || window.clarity) return;
+
+  (function (c, l, a, r, i, t, y) {
+    c[a] =
+      c[a] ||
+      function () {
+        (c[a].q = c[a].q || []).push(arguments);
+      };
+    t = l.createElement(r);
+    t.async = 1;
+    t.src = `https://www.clarity.ms/tag/${i}`;
+    y = l.getElementsByTagName(r)[0];
+    y.parentNode.insertBefore(t, y);
+  })(window, document, "clarity", "script", projectId);
 }
 
 function renderHeader(page, locale) {
@@ -146,10 +199,10 @@ function renderHeader(page, locale) {
           </a>
           <nav class="hidden md:flex items-center gap-8">${navLinks}${legalLinks}</nav>
           <div class="hidden md:flex items-center gap-4">
-            <a href="${switchHref}" class="language-switch" aria-label="${copy.switchAria}">
+            <a href="${switchHref}" class="language-switch" aria-label="${copy.switchAria}" data-track-event="language_switch" data-track-label="${locale === "zh" ? "zh_to_en" : "en_to_zh"}">
               ${copy.switchLabel}
             </a>
-            <a href="contact.html" class="px-5 py-2.5 bg-[#3B82F6] text-white text-sm font-semibold rounded-lg hover:bg-[#2563EB] transition-colors">${copy.contactButton}</a>
+            <a href="contact.html" class="px-5 py-2.5 bg-[#3B82F6] text-white text-sm font-semibold rounded-lg hover:bg-[#2563EB] transition-colors" data-track-event="header_contact_click" data-track-label="${locale}">${copy.contactButton}</a>
           </div>
           <button class="md:hidden p-2 text-[#4B556B]" type="button" data-mobile-toggle aria-expanded="false" aria-label="${copy.openMenuAria}">
             <span class="text-2xl leading-none" data-mobile-icon>☰</span>
@@ -161,10 +214,10 @@ function renderHeader(page, locale) {
         <div class="mobile-menu-wrap">
           <nav class="mobile-menu-panel flex flex-col gap-4 px-5 py-5" data-mobile-menu>
             <div class="mobile-menu-links flex flex-col gap-1">${navLinks}${legalLinks}</div>
-            <a href="contact.html" class="mobile-contact-link">${copy.contactButton}</a>
+            <a href="contact.html" class="mobile-contact-link" data-track-event="mobile_contact_click" data-track-label="${locale}">${copy.contactButton}</a>
             <div class="mobile-menu-actions pt-4 border-t border-[#E6EAF0]">
               <span class="block text-sm text-[#7C8799]">${copy.mobileCurrent}</span>
-              <a href="${switchHref}" class="mobile-language-link">${copy.mobileLanguageLabel} · ${copy.switchLabel}</a>
+              <a href="${switchHref}" class="mobile-language-link" data-track-event="mobile_language_switch" data-track-label="${locale === "zh" ? "zh_to_en" : "en_to_zh"}">${copy.mobileLanguageLabel} · ${copy.switchLabel}</a>
             </div>
           </nav>
         </div>
@@ -255,6 +308,87 @@ function initHeaderInteractions() {
   }
 }
 
+function getAnalyticsContext() {
+  return {
+    locale: getLocale(),
+    page: document.body.dataset.page || "unknown",
+  };
+}
+
+function trackEvent(eventName, properties = {}) {
+  const payload = {
+    ...getAnalyticsContext(),
+    ...properties,
+  };
+
+  if (window.umami && typeof window.umami.track === "function") {
+    window.umami.track(eventName, payload);
+  }
+}
+
+function initTrackedInteractions() {
+  document.querySelectorAll("[data-track-event]").forEach((element) => {
+    element.addEventListener("click", () => {
+      trackEvent(element.dataset.trackEvent || "ui_click", {
+        label: element.dataset.trackLabel || "",
+      });
+    });
+  });
+}
+
+function initSectionTracking() {
+  const trackedSections = document.querySelectorAll("[data-track-section]");
+  if (!trackedSections.length || !("IntersectionObserver" in window)) return;
+
+  const visibleTimers = new Map();
+  const enteredSections = new Set();
+  const engagedSections = new Set();
+
+  const clearTimer = (sectionName) => {
+    const timer = visibleTimers.get(sectionName);
+    if (timer) {
+      window.clearTimeout(timer);
+      visibleTimers.delete(sectionName);
+    }
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const sectionName = entry.target.dataset.trackSection;
+        if (!sectionName) return;
+
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.55) {
+          if (!enteredSections.has(sectionName)) {
+            enteredSections.add(sectionName);
+            trackEvent("section_view", { section: sectionName });
+          }
+
+          if (!engagedSections.has(sectionName) && !visibleTimers.has(sectionName)) {
+            const timer = window.setTimeout(() => {
+              engagedSections.add(sectionName);
+              visibleTimers.delete(sectionName);
+              trackEvent("section_engaged", { section: sectionName, seconds: 8 });
+            }, 8000);
+            visibleTimers.set(sectionName, timer);
+          }
+        } else {
+          clearTimer(sectionName);
+        }
+      });
+    },
+    { threshold: [0.55] }
+  );
+
+  trackedSections.forEach((section) => observer.observe(section));
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      Array.from(visibleTimers.keys()).forEach(clearTimer);
+    }
+  });
+}
+
 function initContactForm() {
   const locale = getLocale();
   const copy = LOCALES[locale];
@@ -286,6 +420,9 @@ function initContactForm() {
     submitButton.textContent = copy.contactFormSending;
 
     window.setTimeout(() => {
+      trackEvent("contact_mailto_open", {
+        subject,
+      });
       window.location.href = `mailto:${CONTACT_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
       submitButton.disabled = false;
       submitButton.textContent = originalLabel;
