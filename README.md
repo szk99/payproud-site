@@ -1,12 +1,11 @@
 # PayProud Static Corporate Website
 
-这是一个可直接部署的纯静态企业官网项目，面向 `payproud.cn` 使用场景，技术栈为原生 `HTML + CSS + JavaScript`，不依赖复杂前端框架。当前版本已包含中英文双语页面结构，并预留了网站分析后台接入位。
+这是一个可直接部署的纯静态企业官网项目，面向 `payproud.cn` 使用场景，技术栈为原生 `HTML + CSS + JavaScript`，不依赖复杂前端框架。当前版本已包含中英文双语页面结构。
 
 ## 项目结构
 
 ```text
 payproud-site/
-├── ADMIN_ANALYTICS_SETUP.md
 ├── about.html
 ├── company.html
 ├── contact.html
@@ -59,7 +58,7 @@ python3 -m http.server 8000
 
 ## 可修改配置
 
-联系方式、分析接入位、多语言公共壳层等集中在：
+联系方式与多语言公共壳层等集中在：
 
 ```text
 assets/js/main.js
@@ -68,28 +67,12 @@ assets/js/main.js
 当前需要重点关注：
 
 - `CONTACT_EMAIL`
-- `ANALYTICS_CONFIG.umami.scriptUrl`
-- `ANALYTICS_CONFIG.umami.websiteId`
-- `ANALYTICS_CONFIG.clarity.projectId`
 
 ## 多语言说明
 
 - 默认中文站点位于根目录页面
 - 英文站点位于 `en/` 目录
 - 页头语言按钮会在中英文对应页面之间跳转
-
-## 分析后台说明
-
-推荐后台方案：
-
-- 官网：`payproud.cn`
-- 分析后台：`admin.payproud.cn`
-- 核心分析：`Umami`
-- 行为分析增强：`Microsoft Clarity`
-
-详细步骤见：
-
-- [ADMIN_ANALYTICS_SETUP.md](/Users/gg-new/Documents/New%20project/payproud-site/ADMIN_ANALYTICS_SETUP.md)
 
 ## 部署说明
 
@@ -114,6 +97,5 @@ assets/js/main.js
 ## 注意事项
 
 - 当前联系表单会唤起本地邮箱应用，不会提交到服务器数据库。
-- 网站分析脚本默认未启用，需在 `assets/js/main.js` 填入 Umami / Clarity 的真实 ID 后才会开始采集。
 - 页面中未使用虚构团队、客户、合作伙伴、融资或下载量数据。
 - 产品文案已明确说明其不是投资平台、不是理财平台、不是金融收益工具。
