@@ -4625,6 +4625,27 @@ video {
   display: none;
 }
 
+[data-site-header] .language-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.75rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #E6EAF0;
+  border-radius: 0.95rem;
+  background: #FFFFFF;
+  color: #4B556B;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-site-header] .language-switch:hover {
+  color: #3B82F6;
+  border-color: #BFDBFE;
+  box-shadow: 0 10px 24px rgba(59, 130, 246, 0.08);
+}
+
 [data-site-header] [data-mobile-toggle] {
   display: flex;
   align-items: center;
@@ -4636,11 +4657,33 @@ video {
   background: #FFFFFF;
 }
 
+[data-site-header] .mobile-menu-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+}
+
+[data-site-header] .mobile-menu-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.2);
+}
+
+[data-site-header] .mobile-menu-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  min-height: 100%;
+  padding: 5rem 1rem 1rem;
+}
+
 [data-site-header] .mobile-menu-panel {
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid #E6EAF0;
   border-radius: 1.5rem;
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  width: min(100%, 22rem);
 }
 
 [data-site-header] .mobile-menu-links a {
@@ -4667,6 +4710,24 @@ video {
   color: #FFFFFF;
   font-size: 0.98rem;
   font-weight: 700;
+}
+
+[data-site-header] .mobile-language-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.75rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #E6EAF0;
+  border-radius: 1rem;
+  color: #1F2A44;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: #FFFFFF;
+}
+
+body.mobile-menu-open {
+  overflow: hidden;
 }
 
 .device-frame {
@@ -4714,8 +4775,7 @@ video {
   }
 
   [data-site-header] .mobile-menu-actions {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: block;
   }
 
   body main section {
